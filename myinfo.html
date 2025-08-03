@@ -1,110 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sankepalle Shashank Reddy - Portfolio</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sankepalle Shashank Reddy - Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .section {
+            scroll-margin-top: 70px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .navbar {
+            transition: all 0.3s;
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #ffd700 !important; /* Gold hover effect */
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 350px;
+            flex: 0 0 350px;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .btn {
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .hero-img {
+            max-width: 200px;
+            border-radius: 50%;
+            border: 4px solid white;
+            transition: transform 0.3s ease;
+        }
+        .hero-img:hover {
+            transform: scale(1.1);
+        }
+        .social-icon {
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: scale(1.2);
+            color: #ffd700; /* Gold hover effect */
+        }
+        .scroll-container {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            width: 350px; /* Show only one card */
+            margin: 0 auto;
+            padding: 0 15px; /* Prevent clipping */
+        }
+        .scroll-container .card {
+            scroll-snap-align: center;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar in Chrome/Safari */
+        }
+        .scroll-arrow {
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .scroll-arrow:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+        .scroll-arrow.disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        .projects-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 430px; /* Card width (350px) + arrow space (40px each) + margins */
+            margin: 0 auto;
+        }
+        @media (max-width: 576px) {
+            .card {
+                width: 100%;
+                flex: 0 0 100%;
+            }
+            .scroll-container {
+                width: 100%;
+                padding: 0 10px;
+            }
+            .projects-wrapper {
+                max-width: 100%;
+                padding: 0 15px;
+            }
+            .scroll-arrow {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
-
-<body class="bg-light text-dark">
-  <header class="bg-primary text-white text-center py-5">
-    <img src="mypic.jpg" class="rounded-circle mb-3" alt="Your Photo" width="120" height="120">
-    <h1>Sankepalle Shashank Reddy</h1>
-    <p>AI/ML Enthusiast | Frontend Developer | 2nd-year CSE Student at Dr. AIT</p>
-  </header>
-
-  <nav class="bg-light border-bottom py-2">
-    <div class="container text-center">
-      <a class="btn btn-outline-primary mx-2" href="#about">About</a>
-      <a class="btn btn-outline-primary mx-2" href="#skills">Skills</a>
-      <a class="btn btn-outline-primary mx-2" href="#projects">Projects</a>
-      <a class="btn btn-outline-primary mx-2" href="#education">Education</a>
-      <a class="btn btn-outline-primary mx-2" href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <main class="container my-5">
-    <section id="about" class="mb-5">
-      <h2 class="text-primary">About Me</h2>
-      <p>I am a passionate second-year Computer Science Engineering student at Dr. Ambedkar Institute of Technology. I enjoy building AI/ML models and responsive frontend websites. I’m actively involved in real-world projects and continuously seeking to learn and grow in the field of tech.</p>
-    </section>
-
-    <section id="skills" class="mb-5">
-      <h2 class="text-primary">Skills</h2>
-      <ul>
-        <li>Python, HTML, CSS, JavaScript</li>
-        <li>Jupyter Notebook, pandas, NumPy, Matplotlib, Librosa</li>
-        <li>TailwindCSS, Git, VS Code, MySQL</li>
-        <li>AI/ML, Frontend Dev, Data Analysis, ARM Assembly (LPC2148)</li>
-      </ul>
-    </section>
-
-    <section id="projects" class="mb-5">
-      <h2 class="text-primary">Projects</h2>
-
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">RIRE Studio – Girls Accessories Website</h5>
-          <p class="card-text">A multipage product showcase website for a girls' accessories store. Clean design and easy navigation using HTML, CSS, and JavaScript.</p>
-          <a href="https://shashankreddy316.github.io/RIRE/" class="btn btn-primary" target="_blank">Live Site</a>
-          <a href="https://github.com/SHASHANKREDDY316/RIRE" class="btn btn-outline-secondary" target="_blank">GitHub</a>
+<body class="bg-light">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Sankepalle Shashank Reddy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </nav>
 
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Emotion Detection using RAVDESS Dataset</h5>
-          <p class="card-text">Detects emotions in speech using audio signal processing (Librosa) and machine learning classifiers.</p>
-          <a href="https://github.com/SHASHANKREDDY316/Elevate-labs-project" class="btn btn-outline-secondary" target="_blank">GitHub</a>
+    <!-- Hero Section -->
+    <section class="bg-primary text-white py-5 text-center">
+        <div class="container py-5">
+            <img src="mypic.jpg" alt="Profile Picture" class="hero-img mb-4">
+            <h1 class="display-4 fw-bold">Sankepalle Shashank Reddy</h1>
+            <p class="lead mb-2">2nd-year CSE Student | AI/ML Enthusiast | Frontend Developer</p>
+            <p class="fs-5">Andhra Pradesh, India</p>
+            <div class="mt-4">
+                <a href="mailto:ssrndl22@gmail.com" class="text-white text-decoration-underline mx-2">ssrndl22@gmail.com</a> |
+                <a href="tel:+919666844884" class="text-white text-decoration-underline mx-2">+91 96668 44884</a> |
+                <a href="https://github.com" class="text-white mx-2"><i class="fab fa-github social-icon"></i></a> |
+                <a href="https://www.linkedin.com/in/shashank-reddy-80956b292/" class="text-white mx-2"><i class="fab fa-linkedin social-icon"></i></a>
+            </div>
         </div>
-      </div>
-
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">KNN-based Classification Project</h5>
-          <p class="card-text">Implemented K-Nearest Neighbors algorithm for a simple data classification task. Demonstrates understanding of ML basics.</p>
-          <a href="https://github.com/SHASHANKREDDY316/project1-knn" class="btn btn-outline-secondary" target="_blank">GitHub</a>
-        </div>
-      </div>
-
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">BMW Car Showroom DBMS</h5>
-          <p class="card-text">A MySQL-based database system to manage a car showroom. Full CRUD functionality.</p>
-          <a href="https://github.com/SHASHANKREDDY316/DBMS" class="btn btn-outline-secondary" target="_blank">GitHub</a>
-        </div>
-      </div>
     </section>
 
-    <section id="education" class="mb-5">
-      <h2 class="text-primary">Education</h2>
-      <p><strong>Dr. Ambedkar Institute of Technology</strong></p>
-      <p>Bachelor of Engineering in Computer Science (2023–2027)</p>
-      <p>2nd Year Student</p>
+    <!-- About Section -->
+    <section id="about" class="section py-5">
+        <div class="container">
+            <h2 class="display-6 fw-bold text-center mb-4">About Me</h2>
+            <p class="lead text-muted">
+                I’m a passionate and self-driven Computer Science Engineering student currently in my second year at Dr. Ambedkar Institute of Technology. I have hands-on experience in AI/ML projects, frontend web development, and basic database management systems. I'm always eager to learn, create, and contribute to real-world tech projects, especially in the areas of data analysis, machine learning, and web applications.
+            </p>
+        </div>
     </section>
 
-    <section id="contact" class="mb-5">
-      <h2 class="text-primary">Contact</h2>
-      <p>Email: <a href="mailto:ssrndl22@gmail.com">ssrndl22@gmail.com</a></p>
-      <p>Phone: +91 96668 44884</p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/shashank-reddy-80956b292" target="_blank">shashank-reddy</a></p>
-      <p>GitHub: <a href="https://github.com/SHASHANKREDDY316" target="_blank">SHASHANKREDDY316</a></p>
+    <!-- Skills Section -->
+    <section id="skills" class="section py-5 bg-secondary text-white">
+        <div class="container">
+            <h2 class="display-6 fw-bold text-center mb-4">Skills</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <h3 class="h5 fw-bold">Languages</h3>
+                    <p>Python, HTML, CSS, JavaScript</p>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="h5 fw-bold">Frameworks & Tools</h3>
+                    <p>Jupyter Notebook, pandas, NumPy, Matplotlib, Librosa, Keil (Assembly), TailwindCSS, Tableau</p>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="h5 fw-bold">Databases</h3>
+                    <p>MySQL</p>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="h5 fw-bold">Technologies</h3>
+                    <p>AI & ML, Frontend Web Dev, Data Analysis, ARM Assembly (LPC2148), Git, VS Code, Data Visualization</p>
+                </div>
+            </div>
+        </div>
     </section>
-  </main>
 
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Sankepalle Shashank Reddy</p>
-    <div>
-      <a href="https://github.com/SHASHANKREDDY316" class="text-white mx-2" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/shashank-reddy-80956b292" class="text-white mx-2" target="_blank">LinkedIn</a>
-    </div>
-  </footer>
+    <!-- Projects Section -->
+    <section id="projects" class="section py-5">
+        <div class="container">
+            <h2 class="display-6 fw-bold text-center mb-4">Projects</h2>
+            <div class="projects-wrapper">
+                <div class="scroll-arrow me-4" id="scrollLeft">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="scroll-container" id="projectScroll">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title h5">RIRE Studio – Girls Accessories Website</h3>
+                            <p class="card-text">An e-commerce-style multipage website designed for a friend’s accessory store. Includes product categories (bracelets, candles, keychains), responsive design, and smooth navigation.</p>
+                            <a href="#" class="btn btn-primary btn-sm me-2">Live Demo</a>
+                            <a href="#" class="btn btn-outline-primary btn-sm">GitHub Repo</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title h5">Emotion Detection using RAVDESS Dataset</h3>
+                            <p class="card-text">Used Librosa and machine learning techniques to detect emotions from voice recordings. Focused on preprocessing, MFCC feature extraction, and classification.</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm">GitHub Repo</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title h5">KNN-based Classification Project</h3>
+                            <p class="card-text">Built a simple classifier using K-Nearest Neighbors algorithm. Demonstrated understanding of supervised learning and data preprocessing.</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm">GitHub Repo</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title h5">DBMS Project — BMW Car Showroom</h3>
+                            <p class="card-text">A full CRUD system built in MySQL for managing a BMW showroom’s customer, car, and purchase data.</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm">GitHub Repo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-arrow ms-4" id="scrollRight">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Experience Section -->
+    <section id="experience" class="section py-5 bg-light">
+        <div class="container">
+            <h2 class="display-6 fw-bold text-center mb-4">Internships & Experience</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title h5">AI/ML Internship, Elevate Labs (May 2025–June 2025)</h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Performed data cleaning and preprocessing on the Titanic dataset</li>
+                        <li class="list-group-item">Built classification models for predicting survival</li>
+                        <li class="list-group-item">Explored visualization tools like seaborn and matplotlib</li>
+                        <li class="list-group-item">Recognized as Best Performer for outstanding project contributions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section py-5">
+        <div class="container">
+            <h2 class="display-6 fw-bold text-center mb-4">Education</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title h5">Bachelor of Engineering in Computer Science</h3>
+                    <p class="card-text">Dr. Ambedkar Institute of Technology, Bangalore</p>
+                    <p class="card-text">Year: 2nd Year (2023–2027)</p>
+                    <p class="card-text">CGPA: [Update CGPA here]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="section py-5 bg-light">
+        <div class="container">
+            <h2 class="display-6 fw-bold text-center mb-4">Certifications</h2>
+            <ul class="list-group">
+                <li class="list-group-item">AI/ML Internship Certificate, Elevate Labs (Best Performer, May 26–June 28, 2025)</li>
+                <li class="list-group-item">Artificial Intelligence with ChatGPT, IntrnForte (May 2025)</li>
+                <li class="list-group-item">Data Analytics, Deloitte Australia (Forage Job Simulation)</li>
+                <li class="list-group-item">Data Science, British Airways (Forage Job Simulation)</li>
+                <li class="list-group-item">GenAI Consulting, BCG (Forage Job Simulation)</li>
+                <!-- <li class="list-group-item">Keil ARM LPC2148 Assembly Programming (Practical Lab)</li> -->
+                <li class="list-group-item">Web Development Practice Projects (Self-initiated)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section py-5">
+        <div class="container text-center">
+            <h2 class="display-6 fw-bold mb-4">Contact</h2>
+            <p class="lead text-muted">
+                Feel free to reach out to me via email at <a href="mailto:ssrndl22@gmail.com" class="text-primary text-decoration-underline">ssrndl22@gmail.com</a> or call me at <a href="tel:+919666844884" class="text-primary text-decoration-underline">+91 96668 44884</a>.
+            </p>
+            <div class="mt-4">
+                <a href="https://github.com" class="btn btn-outline-primary mx-2"><i class="fab fa-github social-icon"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/shashank-reddy-80956b292/" class="btn btn-outline-primary mx-2"><i class="fab fa-linkedin social-icon"></i> LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-4 text-center">
+        <p>&copy; 2025 Sankepalle Shashank Reddy. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS and Custom Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Trigger animations when sections come into view
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, { threshold: 0.2 });
+        sections.forEach(section => observer.observe(section));
+
+        // Horizontal Scroll for Projects (One Card Visible)
+        const scrollContainer = document.getElementById('projectScroll');
+        const scrollLeftBtn = document.getElementById('scrollLeft');
+        const scrollRightBtn = document.getElementById('scrollRight');
+        const cardWidth = 350; // Card width
+        let currentIndex = 0;
+        const totalCards = scrollContainer.children.length;
+
+        function updateArrowStates() {
+            scrollLeftBtn.classList.toggle('disabled', currentIndex <= 0);
+            scrollRightBtn.classList.toggle('disabled', currentIndex >= totalCards - 1);
+        }
+
+        scrollLeftBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                scrollContainer.scrollTo({ left: currentIndex * cardWidth, behavior: 'smooth' });
+                updateArrowStates();
+            }
+        });
+
+        scrollRightBtn.addEventListener('click', () => {
+            if (currentIndex < totalCards - 1) {
+                currentIndex++;
+                scrollContainer.scrollTo({ left: currentIndex * cardWidth, behavior: 'smooth' });
+                updateArrowStates();
+            }
+        });
+
+        scrollContainer.addEventListener('scroll', () => {
+            currentIndex = Math.round(scrollContainer.scrollLeft / cardWidth);
+            updateArrowStates();
+        });
+
+        updateArrowStates(); // Initial state
+    </script>
 </body>
-
 </html>
